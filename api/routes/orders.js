@@ -6,7 +6,7 @@ const Order = require('../models/order')
 const Product = require('../models/product')
 // Handle incoming GET requests to /orders
 router.get('/', (req, res, next) => {
-	Order.find()
+  Order.find()
 		.select('product quantity _id')
 		.populate('product', 'name')
 		.exec()
@@ -30,7 +30,7 @@ router.get('/', (req, res, next) => {
 			res.status(500).json({
 				error: err
 			})
-		})
+})
 })
 
 router.post('/', (req, res, next) => {
