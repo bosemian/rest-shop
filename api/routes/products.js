@@ -12,15 +12,15 @@ const storage = multer.diskStorage({
   }
 })
 
+// reject a file
 const fileFilter = (req, file, cb) => {
-  // reject a file
   if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
     cb(null, true)
   } else {
     cb(null, false)
   }
 }
-
+// config multer
 const upload = multer({
   storage: storage,
   limits: {
@@ -74,6 +74,7 @@ router.post('/', upload.single('productImage'), (req, res, next) => {
     price: req.body.price,
     productImage: req.file.path
   })
+  // change path to /
   product.productImage = product.productImage.replace(/\\/, '/')
   product
     .save()
